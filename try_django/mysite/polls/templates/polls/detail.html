@@ -1,0 +1,14 @@
+<h1>{{ question.question_text }}</h1>
+<!--question이 주어지면 question의 text heading으로 삽입-->
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'polls:vote' question.id %}" method="post">
+{% csrf_token %}
+{% for choice in question.choice_set.all %}
+    <!--At the choice, possible to get the data by using foreign key. So get the choice_set.-->
+    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+{% endfor %}
+<input type="submit" value="Vote">
+</form>

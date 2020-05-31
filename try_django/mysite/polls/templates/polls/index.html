@@ -1,0 +1,16 @@
+<!--polls 밑에 index.html을 집어 넣어야지 나중에
+polls이외의 다른 여러가지 폴더가 생겨도 index.html의 중복이없음-->
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+
+{% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+                    <!--Refer the polls's detail.-->    
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+ 

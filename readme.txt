@@ -1,1 +1,1 @@
-wow
+This is the repository for django
